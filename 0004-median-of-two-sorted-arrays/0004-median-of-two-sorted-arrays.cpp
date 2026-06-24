@@ -6,6 +6,7 @@ public:
 
         if(n > m)
         {
+            //the length should be smaller so we can perform lesser search operations to eliminate 
             return findMedianSortedArrays(nums2,nums1);
         }
 
@@ -13,8 +14,8 @@ public:
 
         while(l <= h)
         {
-            int mid1 = l + (h - l) / 2;
-            int mid2 = (n + m + 1) / 2 - mid1;
+            int mid1 = l + (h - l) / 2;//to get rem ele in left part
+            int mid2 = (n + m + 1) / 2 - mid1;//for remaining elements in another array to get in left part
 
             int l1 = INT_MIN;
             int l2 = INT_MIN;
@@ -26,6 +27,7 @@ public:
             if(mid1 < n) r1 = nums1[mid1]; 
             if(mid2 < m) r2 = nums2[mid2];
 
+            //if the left l1 ele is less than the right r2 ele and left part l2 is less than r1 then it is sorted so we can find the median easily based on even and odd
             if(l1 <= r2 && l2 <= r1)
             {
                 if((n + m) % 2 == 0)
@@ -39,6 +41,8 @@ public:
             }
             else if(l1 > r2)
             {
+
+                //we need less element so move high to mid  - 1
                 h = mid1 - 1;
             } 
             else
