@@ -11,7 +11,6 @@ public:
             
             res += mp[nums[ei]];
             mp[nums[ei]]++;
-            
 
             while(res >= k)
             {
