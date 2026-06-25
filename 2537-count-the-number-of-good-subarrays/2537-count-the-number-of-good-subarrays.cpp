@@ -9,8 +9,8 @@ public:
         while(ei < nums.size())
         {
             
-                res += mp[nums[ei]];
-                mp[nums[ei]]++;
+            res += mp[nums[ei]];
+            mp[nums[ei]]++;
             
 
             while(res >= k)
