@@ -2,6 +2,8 @@ class Solution {
 public:
     long long continuousSubarrays(vector<int>& nums) {
 
+        ios_base::sync_with_stdio(false);
+        cin.tie(NULL);
         long long ans = 0;
         int n = nums.size();
         int ei = 0,si = 0;
