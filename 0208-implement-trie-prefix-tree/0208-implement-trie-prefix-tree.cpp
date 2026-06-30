@@ -16,11 +16,13 @@ class TrieNode
 class Trie {
 public:
 TrieNode* root;
-    Trie() {
+    Trie() 
+    {
         root = new TrieNode();
     }
     
-    void insert(string word) {
+    void insert(string word) 
+    {
          TrieNode* curr = root;
         for(int i = 0;i < word.size();i++)
         {
@@ -37,7 +39,8 @@ TrieNode* root;
         curr->isend = true;
     }
     
-    bool search(string word) {
+    bool search(string word) 
+    {
         TrieNode* curr = root;
         for(int i = 0;i < word.size();i++)
         {
@@ -55,8 +58,9 @@ TrieNode* root;
         return curr->isend;//we got the word that we are finding
     }
     
-    bool startsWith(string prefix) {
-        
+    bool startsWith(string prefix) 
+    {
+
         TrieNode* curr = root;
 
         for(int i = 0;i < prefix.size();i++)
