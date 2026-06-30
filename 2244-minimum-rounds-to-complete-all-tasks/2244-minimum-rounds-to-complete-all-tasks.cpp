@@ -11,7 +11,7 @@ public:
 
         for(auto &ele : mp)
         {
-            if(ele.second <=1)
+            if(ele.second ==1)
             {
                 return -1;
             }
