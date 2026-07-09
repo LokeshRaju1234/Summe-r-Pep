@@ -5,7 +5,7 @@ class TrieNode
     int idx;
     int length;
 };
-static constexpr int MAX_NODES = 600005;
+static constexpr int MAX_NODES = 500005;
 static TrieNode pool[MAX_NODES];
 static int ptr = 0;
 
