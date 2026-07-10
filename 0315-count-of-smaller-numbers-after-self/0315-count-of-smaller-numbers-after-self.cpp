@@ -62,30 +62,31 @@ class SegmentTree
         return query(ql,qr,2 * index + 1,left,mid) + query(ql,qr,2 * index + 2,mid + 1,right);
     }    
 };
-class NumArray
-{
-    public:
-    SegmentTree* st;
-    int n;
 
-    NumArray(vector<int>& nums)
-    {
-        int n = nums.size();
-        this->n = n;
-        st = new SegmentTree(n);
-        st->build(0,0,n - 1,nums);
-    }
+// class NumArray
+// {
+//     public:
+//     SegmentTree* st;
+//     int n;
 
-    void update(int i,int val)
-    {
-        st->update(i,0,0,n - 1);
-    }
+//     NumArray(vector<int>& nums)
+//     {
+//         int n = nums.size();
+//         this->n = n;
+//         st = new SegmentTree(n);
+//         st->build(0,0,n - 1,nums);
+//     }
 
-    int sumRange(int l,int r)
-    {
-        return st->query(l,r,0,0,n - 1);
-    }
-};
+//     void update(int i,int val)
+//     {
+//         st->update(i,0,0,n - 1);
+//     }
+
+//     int sumRange(int l,int r)
+//     {
+//         return st->query(l,r,0,0,n - 1);
+//     }
+// };
 class Solution {
 public:
 int binarysearch(int val,vector<int>& nums)
