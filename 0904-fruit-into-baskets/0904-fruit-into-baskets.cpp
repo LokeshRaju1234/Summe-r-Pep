@@ -3,6 +3,7 @@ public:
     int totalFruit(vector<int>& fruits) {
         unordered_map<int,int> mp;
 
+        if(fruits.size() ==1)return 1;
         int left = 0;
         int maxans = INT_MIN;
         for(int right = 0;right < fruits.size();right++)
