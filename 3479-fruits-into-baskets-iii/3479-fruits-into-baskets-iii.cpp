@@ -84,6 +84,7 @@ public:
 
        for(int i = 0;i < n;i++)
        {
+        //if the fruit cant placed then query returns -1 so it will remain unplaced
         int idx = sg.query(0,0,n - 1,fruits[i]);
 
         if(idx == -1)
@@ -94,6 +95,7 @@ public:
         {
             sg.update(idx,0,0,n - 1);
         }
+        
        }
 
        return unplaced;
