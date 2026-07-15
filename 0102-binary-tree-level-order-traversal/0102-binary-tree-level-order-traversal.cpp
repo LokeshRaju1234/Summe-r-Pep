@@ -18,39 +18,35 @@ public:
             return {};
         }
         vector<vector<int>>ans;
-        vector<int> res;
+        
         queue<TreeNode*>q;
         q.push(root);
-        res.push_back(root->val);
-        ans.emplace_back(res);
 
-        res.clear();
         while(!q.empty())
         {
             int size = q.size();
+            vector<int> res;
             while(size--)
             {
                 TreeNode* node = q.front();
                 q.pop();
 
+                res.push_back(node->val);
+
                 if(node->left)
                 {
                     q.push(node->left);
-                    res.push_back(node->left->val);
+                    
                 }
 
                 if(node->right)
                 {
                     q.push(node->right);
-                    res.push_back(node->right->val);
+                   
                 }
             }
 
-            if(!q.empty())
-            {
-                ans.emplace_back(res);
-                res.clear();
-            }
+            ans.emplace_back(res);
         }
 
         return ans;
