@@ -14,7 +14,7 @@ public:
     int idx;
     unordered_map<int,int> mp;
 
-    TreeNode* dfs(vector<int>& preorder,vector<int>& inorder,int left,int right,TreeNode* root)
+    TreeNode* dfs(vector<int>& preorder,vector<int>& inorder,int left,int right)
     {
         if(left > right)
         {
@@ -27,8 +27,8 @@ public:
        TreeNode* node = new TreeNode(rootValue);
        int position = mp[rootValue];
        
-       node->left = dfs(preorder,inorder,left,position - 1,root);
-       node->right = dfs(preorder,inorder,position + 1, right,root);
+       node->left = dfs(preorder,inorder,left,position - 1);
+       node->right = dfs(preorder,inorder,position + 1, right);
        return node;
     }
     TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
@@ -39,7 +39,7 @@ public:
             mp[inorder[i]] = i;
         }
 
-        TreeNode* root = NULL;
-        return dfs(preorder,inorder,0,inorder.size() - 1,root);
+       
+        return dfs(preorder,inorder,0,inorder.size() - 1);
     }
 };
