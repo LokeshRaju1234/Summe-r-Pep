@@ -9,6 +9,7 @@ public:
             int nr = i + arr[x][0];
             int nc = j + arr[x][1];
 
+            //check the neighbours and out of bounds and check if the cell will be in the same battle ship
             if(nr >= 0 && nc < board[0].size() && nr < board.size() && board[nr][nc] == 'X')
             {
                 dfs(nr,nc,board);
