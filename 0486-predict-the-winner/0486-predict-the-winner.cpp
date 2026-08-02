@@ -1,17 +1,19 @@
 class Solution {
 public:
-    bool predictTheWinner(vector<int>& A) {
-        int n = A.size();
-        if (~n & 1) return true;
-
-        vector<int> dp(n);
-
-        for (int i = n - 1; i >= 0; i--) {
-            dp[i] = A[i];
-            for (int j = i + 1; j < n; j++)
-                dp[j] = max(A[i] - dp[j], A[j] - dp[j - 1]);
+    int solve(vector<int>& A,int i,int j)
+    {
+        if(i == j)
+        {
+            return A[i]; 
         }
 
-        return dp[n - 1] >= 0;
+        int left = A[i] - solve(A,i + 1,j);
+        int right = A[j] - solve(A,i,j - 1);
+
+        return max(left,right); 
+    }
+    bool predictTheWinner(vector<int>& A) {
+        int n = A.size() - 1;
+        return solve(A,0,n) >= 0;
     }
 };
