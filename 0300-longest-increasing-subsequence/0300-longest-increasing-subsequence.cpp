@@ -1,20 +1,32 @@
 class Solution {
 public:
-    int lengthOfLIS(vector<int>& nums) {
+    int lengthOfLIS(vector<int>& nums) 
+    {
         int n = nums.size();
-        vector<int> dp(n,1);
-
-        for(int i = 1;i < n;i++)
+        vector<int> dp(n + 1);
+        int s = 0;
+        for(int x : nums)
         {
-            for(int j = 0;j < i;j++)
+            int l = 0,r = s;
+            while(l != r)
             {
-                if(nums[i] > nums[j])
+                int mid = (l + r) >> 1;
+
+                //2  < 5 then it is strictly incasing
+                if(dp[mid] < x)
                 {
-                dp[i] = max(dp[i],1 + dp[j]);
+                    l = mid + 1;
+                }
+                else
+                {
+                    r = mid;
                 }
             }
+
+            dp[l] = x;
+            if(l == s) s++;
         }
 
-        return *max_element(dp.begin(),dp.end());
+        return s;
     }
 };
