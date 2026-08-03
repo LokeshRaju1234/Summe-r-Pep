@@ -12,7 +12,7 @@ public:
             {
                 int mid = (l + r) >> 1;
 
-                //2  < 5 then it is strictly incasing
+                //2 < 5 then it is strictly increasing
                 if(dp[mid] < x)
                 {
                     l = mid + 1;
