@@ -3,52 +3,37 @@ public:
 map<string,int> dp;
     int solve(vector<int>& arr1, vector<int>& arr2,int i,int prev)
     {
-        //to validate ex like case 1 -> idx 2 and prevVal 33 
-        //case 2 -> idx 23 and prevVal 3 to avoid this we use space in btw index and prevVal
-        string key = to_string(i) + " " + to_string(prev);
-        if(i == arr1.size())
-        return 0;
+        //we have processed the array completely
+       if(i == arr1.size()) return 0;
+       
+       string key = to_string(i) + " " + to_string(prev);   
 
-        if(dp.find(key) != dp.end()) return dp[key];
-        int val1 = -1;
-        int val2 = -1;
-        if(arr1[i] > prev)
+       if(dp.find(key) != dp.end()) return dp[key];
+
+       int ans  = INT_MAX;
+       //not take
+       if(arr1[i] > prev)
+       {
+            int nt = solve(arr1,arr2,i + 1,arr1[i]);
+            if(nt != -1)
+            {
+                ans = min(ans,nt);
+            }
+       }
+
+       //take it
+       auto it = upper_bound(arr2.begin(),arr2.end(),prev);
+        if(it != arr2.end())
         {
-            //skip
-            val1 = solve(arr1,arr2,i + 1,arr1[i]);
+            int take = solve(arr1,arr2,i + 1,*it);
+            if(take != -1)
+            {
+                take++;
+                ans = min(take,ans);
+            }
         }
 
-         auto it = upper_bound(arr2.begin(),arr2.end(),prev);
-            if(it != arr2.end())
-            {
-                //if you found the value then this will be our previous value
-                val2 = solve(arr1,arr2,i + 1,*it);
-                if(val2 != -1)
-                {
-                    val2 += 1;
-                }
-
-            }
-            //if we dont get any sI array 
-            if(val1 == -1 && val2 == -1) return dp[key] =  -1;
-            if(val1 == -1) return dp[key] =  val2;
-            if(val2 == -1) return dp[key] =  val1;
-
-            //if both calls are valid so take minimum 
-            return dp[key] = min(val1,val2);
-        // else
-        // {
-        //     auto it = upper_bound(arr2.begin(),arr2.end(),prev);
-        //     if(it == arr2.end())
-        //     {
-        //         return dp[key] =   -1;
-        //     }
-        //         val2 = solve(arr1,arr2,i + 1,*it);
-        //         if(val2 != -1)
-        //         {
-        //             val2 += 1;
-        //         }
-        // }
+        return dp[key] = ans == INT_MAX ? -1 : ans;
     }
     int makeArrayIncreasing(vector<int>& arr1, vector<int>& arr2) {
         sort(arr2.begin(),arr2.end());
