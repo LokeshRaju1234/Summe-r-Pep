@@ -37,6 +37,8 @@ map<string,int> dp;
     }
     int makeArrayIncreasing(vector<int>& arr1, vector<int>& arr2) {
         sort(arr2.begin(),arr2.end());
+         // Remove duplicates from arr2
+        arr2.erase(unique(arr2.begin(), arr2.end()), arr2.end());
         return solve(arr1,arr2,0,INT_MIN);
     }
 };
