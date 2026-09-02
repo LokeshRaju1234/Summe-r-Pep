@@ -20,7 +20,7 @@ public:
         }
        }
 
-       //if we dont found litters return -1
+       //if we dont found litters then steps required is 0
        if(litterCount == 0) return 0;
 
        //at each level dist i need to track energy i consumed,how many litters i collected
@@ -70,6 +70,8 @@ public:
                 int ne = e - 1;//consumes energy for each step
                 int ne_mask = mask;
 
+                //when litter found turn the litter position into one to represent that i have
+                //processed these many litters till now 
                 if(classroom[nr][nc] == 'L'){
                     ne_mask |= (1 << litter[nr][nc]);
                 }
