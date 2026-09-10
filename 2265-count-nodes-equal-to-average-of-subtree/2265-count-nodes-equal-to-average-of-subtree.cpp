@@ -37,7 +37,9 @@ public:
 
         if(root == NULL) return 0;
 
+        //returns the sum of its subtree
         int sum = sumOfNodes(root);
+        //returns the number of nodes in its subtree
         int count = countOfNodes(root);
         int answer = 0;
         if((sum / count) == root->val){
