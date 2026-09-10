@@ -11,45 +11,24 @@
  */
 class Solution {
 public:
-    int sumOfNodes(TreeNode* root){
-        if(root == NULL){
-            return 0;
-        }
+   int ans = 0; 
+   pair<int,int> dfs(TreeNode* root){
+    if(root == NULL) return {0,0};
 
-        int left = sumOfNodes(root->left);
-        int right = sumOfNodes(root->right);
+    pair<int,int> left = dfs(root->left);
+    pair<int,int> right = dfs(root->right);
 
-        return root->val + left + right;
+    int sum = root->val + left.first + right.first;
+    int count = 1 + left.second + right.second;
+
+    if((sum / count) == root->val){
+        ans++;
     }
 
-    int countOfNodes(TreeNode* root){
-        
-        if(root == NULL){
-            return 0;
-        }
-
-        int left = countOfNodes(root->left);
-        int right = countOfNodes(root->right);
-
-        return 1 + left + right;
-    }
+    return {sum,count};
+   }
     int averageOfSubtree(TreeNode* root) {
-
-        if(root == NULL) return 0;
-
-        //returns the sum of its subtree
-        int sum = sumOfNodes(root);
-        //returns the number of nodes in its subtree
-        int count = countOfNodes(root);
-        int answer = 0;
-        if((sum / count) == root->val){
-            answer++;
-        }
-
-       int left =  averageOfSubtree(root->left);
-        int right  = averageOfSubtree(root->right);
-
-        answer += left + right;
-        return answer;
+        dfs(root);
+        return ans;
     }
 };
