@@ -25,9 +25,13 @@ public:
             return total;
         };
         
+        //max becuase to count the days when the both are in Roman
         int start = max(convert(AAM,AAD),convert(BAM,BAD));
+        
+        //min because once one of the people leaves earlier they are no longer in roman
         int end  = min(convert(ALM,ALD),convert(BLM,BLD));
 
+        //to count the day inclusive we use +1 to count the day started
         int totalDays = max(0,end - start + 1);
         return totalDays;
     }
